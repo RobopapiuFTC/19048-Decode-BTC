@@ -1,0 +1,91 @@
+package org.firstinspires.ftc.teamcode.Systems;
+import android.graphics.Color;
+
+import com.bylazar.telemetry.TelemetryManager;
+import com.qualcomm.hardware.rev.RevColorSensorV3;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.Hardware.Robot;
+
+import com.pedropathing.util.Timer;
+public class Intake {
+    public DcMotorEx intake,transfer;
+    public boolean pornit=false,ip=false,tp=false,intaking=false;
+    public Timer iTimer;
+
+    public Intake(HardwareMap hw, TelemetryManager telemetry){
+        intake=hw.get(DcMotorEx.class, "i");
+        transfer=hw.get(DcMotorEx.class, "t");
+        iTimer=new Timer();
+    }
+    public void periodic(){
+        full();
+        run();
+    }
+    public void start() {
+        intaking=false;
+        pornit=true;
+        ip = true;
+        tp = true;
+    }
+    public void intake(){
+        intaking=true;
+        pornit=true;
+        ip=true;
+        tp=true;
+        iTimer.resetTimer();
+    }
+    public void startI(){
+        pornit=true;
+        ip=true;
+    }
+
+    public void startT(){
+        pornit=true;
+        tp=true;
+    }
+    public void stop(){
+        intaking=false;
+        pornit=false;
+        ip=false;
+        tp=false;
+    }
+
+    public double getVeloI(){
+        return intake.getVelocity();
+    }
+    public double getVeloT(){
+        return transfer.getVelocity();
+    }
+    public void full(){
+        if(!intaking)return;
+        if(iTimer.getElapsedTimeSeconds()<0.2)return;
+        if(getVeloT()<1200){
+                tp=false;
+                transfer.setPower(0);
+            }
+    }
+    public void run(){
+        if(pornit){
+            if(ip)intake.setPower(1);
+            if(tp)transfer.setPower(1);
+        }
+        else{
+            intake.setPower(0);
+            transfer.setPower(0);
+        }
+    }
+
+
+}
