@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.Util.HubBulkRead;
 import org.firstinspires.ftc.teamcode.Hardware.Robot;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@TeleOp(name = "Blue", group = "...Sigma")
-public class TeleBlue extends OpMode {
+@TeleOp(name = "Red", group = "...Sigma")
+public class TeleRed extends OpMode {
 
     Robot r;
     private Follower follower;
@@ -33,10 +33,14 @@ public class TeleBlue extends OpMode {
 
     @Override
     public void init() {
+        startingPose.mirror();
+        relocalization.mirror();
+        relocalization2.mirror();
+        parkPose.mirror();
         follower = Constants.createFollower(hardwareMap);
         bulk = new HubBulkRead(hardwareMap, LynxModule.BulkCachingMode.MANUAL);
         t = PanelsTelemetry.INSTANCE.getTelemetry();
-        r = new Robot(hardwareMap,follower, t, gamepad1 , gamepad2,true,false,startingPose);
+        r = new Robot(hardwareMap,follower, t, gamepad1 , gamepad2,false,false,startingPose);
         r.tInit();
         r.setRelocalization(relocalization,relocalization2);
     }

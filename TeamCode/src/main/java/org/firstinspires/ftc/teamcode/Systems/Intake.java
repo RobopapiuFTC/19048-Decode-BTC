@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Hardware.Robot;
 
@@ -68,10 +69,10 @@ public class Intake {
     public double getVeloT(){
         return transfer.getVelocity();
     }
+    public double getAT(){return transfer.getCurrent(CurrentUnit.AMPS);}
     public void full(){
         if(!intaking)return;
-        if(iTimer.getElapsedTimeSeconds()<0.2)return;
-        if(getVeloT()<1200){
+        if(getAT()>1){
                 tp=false;
                 transfer.setPower(0);
             }
