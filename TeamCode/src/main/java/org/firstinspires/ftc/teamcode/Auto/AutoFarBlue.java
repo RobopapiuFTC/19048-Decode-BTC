@@ -245,7 +245,6 @@ public class AutoFarBlue extends OpMode{
                     if(okp){
                         pathTimer.resetTimer();
                         r.i.start();
-
                         okp=false;
                     }
                     if(pathTimer.getElapsedTimeSeconds()>1) {
@@ -369,6 +368,7 @@ public class AutoFarBlue extends OpMode{
                         follower.followPath(end,true);
                         r.aiming=false;
                         r.i.stop();
+                        r.i.triangle=true;
                         r.tu.setYaw(0);
                         endPath();
                     }
@@ -430,6 +430,7 @@ public class AutoFarBlue extends OpMode{
         follower.usePredictiveBraking=true;
         r = new Robot(hardwareMap,follower,t,gamepad1,gamepad2,true,true,startPose);
         r.setShootTargetFar();
+        r.i.triangle=true;
     }
     @Override
     public void init_loop() {}
