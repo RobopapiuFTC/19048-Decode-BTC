@@ -26,7 +26,7 @@ public class TeleRed extends OpMode {
     public static Pose startingPose = new Pose(23, 128, Math.toRadians(234));
     public static Pose parkPose = new Pose(111,40,Math.toRadians(270));
     public static Pose relocalization = new Pose(132,8,Math.toRadians(0));
-    public static Pose relocalization2 = new Pose(33,137.5,Math.toRadians(270));
+    public static Pose relocalization2 = new Pose(18,80,Math.toRadians(180));
     public static PathChain park;
     public HubBulkRead bulk;
 

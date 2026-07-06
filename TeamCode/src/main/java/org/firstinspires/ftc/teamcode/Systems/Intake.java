@@ -25,24 +25,33 @@ public class Intake {
     public boolean pornit=false,ip=false,tp=false,intaking=false;
     public Timer iTimer;
 
+    public static double power=1;
+    public static boolean triangle=true;
+
     public Intake(HardwareMap hw, TelemetryManager telemetry){
         intake=hw.get(DcMotorEx.class, "i");
         transfer=hw.get(DcMotorEx.class, "t");
+        transfer.setDirection(DcMotorSimple.Direction.REVERSE);
         iTimer=new Timer();
     }
     public void periodic(){
-        full();
+        //full();
         run();
     }
     public void start() {
         intaking=false;
         pornit=true;
+        intake.setPower(1);
+        transfer.setPower(power);
         ip = true;
         tp = true;
     }
     public void intake(){
         intaking=true;
         pornit=true;
+        intake.setPower(1);
+        if(triangle)transfer.setPower(-1);
+        else transfer.setPower(1);
         ip=true;
         tp=true;
         iTimer.resetTimer();
@@ -78,11 +87,7 @@ public class Intake {
             }
     }
     public void run(){
-        if(pornit){
-            if(ip)intake.setPower(1);
-            if(tp)transfer.setPower(1);
-        }
-        else{
+        if(!pornit){
             intake.setPower(0);
             transfer.setPower(0);
         }

@@ -58,9 +58,12 @@ public class Robot {
         s=new Shooter(this.h,this.t,this.a);
         i=new Intake(this.h,this.t);
         tu=new Turret(this.h,this.t,this.a);
+        i.triangle=true;
         loopTimer=new Timer();
         iTimer=new Timer();
         sTimer=new Timer();
+        rTimer=new Timer();
+        oTimer=new Timer();
     }
     public void stop(){
         endPose=f.getPose();
@@ -80,7 +83,7 @@ public class Robot {
         Controls();
         drive();
         loop();
-        if(!turret45)shoot(futurePose);
+        shoot(currentPose);
         i.periodic();
         s.periodic();
         tu.periodic();
@@ -108,17 +111,17 @@ public class Robot {
     public void drive(){
         if(slowmode){
             f.setTeleOpDrive(
-                    -g1.left_stick_y*0.3,
-                    -g1.left_stick_x*0.3,
-                    -g1.right_stick_x*0.3,
-                    true
+                    g1.left_stick_y*0.3,
+                    g1.left_stick_x*0.3,
+                    g1.right_stick_x*0.3,
+                    false
             );
         }
         else f.setTeleOpDrive(
-                -g1.left_stick_y,
-                -g1.left_stick_x,
-                -g1.right_stick_x,
-                true
+                g1.left_stick_y,
+                g1.left_stick_x,
+                g1.right_stick_x,
+                false
         );
     }
     public void Controls(){
@@ -127,6 +130,12 @@ public class Robot {
                 intake=true;
                 oki=true;
                 shooting=false;
+                rTimer.resetTimer();
+            }
+        }
+        if(g1.share){
+            if(rTimer.getElapsedTimeSeconds()>0.3){
+                i.triangle=!i.triangle;
                 rTimer.resetTimer();
             }
         }
@@ -280,10 +289,12 @@ public class Robot {
     public void setShootTarget() {
         if (a){shootp = new Pose(0, 144, 0);}
         else {shootp = new Pose(144, 144, 0);}
+        i.power=1;
     }
     public void setShootTargetFar(){
         if (a){shootp = new Pose(2, 142, 0);}
         else {shootp = new Pose(142, 142, 0);}
+        i.power=0.8;
     }
     public Pose getShootTarget() {
         return shootp;
