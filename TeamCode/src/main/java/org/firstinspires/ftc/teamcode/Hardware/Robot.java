@@ -90,6 +90,7 @@ public class Robot {
     }
     public void aPeriodic() {
         poses();
+        loop();
         if(aiming){
             tu.face(getShootTarget(),currentPose);
             tu.automatic();
@@ -109,20 +110,19 @@ public class Robot {
         }
     }
     public void drive(){
-        if(slowmode){
-            f.setTeleOpDrive(
-                    g1.left_stick_y*0.3,
-                    g1.left_stick_x*0.3,
-                    g1.right_stick_x*0.3,
-                    false
+            if (slowmode) {
+                f.setTeleOpDrive(
+                        -g1.left_stick_y * 0.3,
+                        -g1.left_stick_x * 0.3,
+                        -g1.right_stick_x * 0.3,
+                        true
+                );
+            } else f.setTeleOpDrive(
+                    -g1.left_stick_y,
+                    -g1.left_stick_x,
+                    -g1.right_stick_x,
+                    true
             );
-        }
-        else f.setTeleOpDrive(
-                g1.left_stick_y,
-                g1.left_stick_x,
-                g1.right_stick_x,
-                false
-        );
     }
     public void Controls(){
         if(g1.y){
