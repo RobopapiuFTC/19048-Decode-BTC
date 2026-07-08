@@ -25,7 +25,7 @@ public class Turret {
     public static double gear = 1900/360,target;
     public double tti=-Math.toRadians(90),tpc=0;
     public static double offset=0;
-    public boolean a;
+    public boolean auto;
     public final ServoImplEx t1,t2;
 
     // public final DcMotorEx turret;
@@ -38,19 +38,16 @@ public class Turret {
 
     public static boolean on = true, manual = false;
 
-    public Turret(HardwareMap hardwareMap, TelemetryManager telemetry, boolean a) {
+    public Turret(HardwareMap hardwareMap, TelemetryManager telemetry, boolean auto) {
         t1=hardwareMap.get(ServoImplEx.class, "t1");
         t2=hardwareMap.get(ServoImplEx.class, "t2");
         t1.setPwmRange(new PwmControl.PwmRange(505,2495));
         t2.setPwmRange(new PwmControl.PwmRange(505,2495));
-        if(a){
+        if(auto){
             t1.setPosition(0.05);
             t2.setPosition(0.05);
         }
-        this.a=a;
-        c = new Camera(hardwareMap,telemetry,a);
-        c.start();
-
+        this.auto=auto;
         p = new PIDFController(new PIDFCoefficients(kp, 0, kd, kf));
         s = new PIDFController(new PIDFCoefficients(sp, 0, sd, sf));
         cameraTimer = new Timer();

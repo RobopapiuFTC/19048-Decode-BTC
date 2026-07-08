@@ -57,7 +57,7 @@ public class Robot {
 
         s=new Shooter(this.h,this.t,this.a);
         i=new Intake(this.h,this.t);
-        tu=new Turret(this.h,this.t,this.a);
+        tu=new Turret(this.h,this.t,this.auto);
         i.triangle=true;
         loopTimer=new Timer();
         iTimer=new Timer();
