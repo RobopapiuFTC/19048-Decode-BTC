@@ -55,7 +55,7 @@ public class Robot {
         this.auto = auto;
         this.startingPose=startingPose;
 
-        s=new Shooter(this.h,this.t,this.a);
+        s=new Shooter(this.h,this.t,this.auto);
         i=new Intake(this.h,this.t);
         tu=new Turret(this.h,this.t,this.auto);
         i.triangle=true;

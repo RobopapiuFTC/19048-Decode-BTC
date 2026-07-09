@@ -53,11 +53,11 @@ public class AutoCloseBlue24 extends OpMode{
         gate = HeadingInterpolator.piecewise(
                 new HeadingInterpolator.PiecewiseNode(
                         0,
-                        0.7,
+                        0.4,
                         HeadingInterpolator.tangent
                 ),
                 new HeadingInterpolator.PiecewiseNode(
-                        0.7,
+                        0.4,
                         1,
                         HeadingInterpolator.constant(doorPose.getHeading())
                 )
@@ -202,7 +202,7 @@ public class AutoCloseBlue24 extends OpMode{
                                             doorPose)
                             )
                             .setBrakingStrength(2)
-                            .setHeadingInterpolation(gate)
+                            .setConstantHeadingInterpolation(doorPose.getHeading())
                             .build();
                     if(okp){
                         r.aiming=true;
@@ -295,7 +295,7 @@ public class AutoCloseBlue24 extends OpMode{
                                             doorPose)
                             )
                             .setBrakingStrength(2)
-                            .setHeadingInterpolation(gate)
+                            .setConstantHeadingInterpolation(doorPose.getHeading())
                             .build();
                     if(okp){
                         r.aiming=true;
@@ -354,7 +354,7 @@ public class AutoCloseBlue24 extends OpMode{
                                             doorPose)
                             )
                             .setBrakingStrength(2)
-                            .setHeadingInterpolation(gate)
+                            .setConstantHeadingInterpolation(doorPose.getHeading())
                             .build();
                     if(okp){
                         r.aiming=true;
@@ -413,7 +413,7 @@ public class AutoCloseBlue24 extends OpMode{
                                             doorPose)
                             )
                             .setBrakingStrength(2)
-                            .setHeadingInterpolation(gate)
+                            .setConstantHeadingInterpolation(doorPose.getHeading())
                             .build();
                     if(okp){
                         r.aiming=true;
@@ -472,7 +472,7 @@ public class AutoCloseBlue24 extends OpMode{
                                             doorPose)
                             )
                             .setBrakingStrength(2)
-                            .setHeadingInterpolation(gate)
+                            .setConstantHeadingInterpolation(doorPose.getHeading())
                             .build();
                     if(okp){
                         r.aiming=true;

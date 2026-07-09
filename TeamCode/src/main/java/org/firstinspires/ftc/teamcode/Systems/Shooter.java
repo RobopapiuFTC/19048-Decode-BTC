@@ -30,7 +30,7 @@ public class Shooter {
     public boolean activated = true;
     public static double sv = 355/270;
 
-    public double offset,latching=0.7;
+    public double offset,latching=0.75;
     public static double hood,angle=0.0005*sv,anglemax=0.05;
 
     public static List<ShotSample> samples = Arrays.asList(
@@ -56,7 +56,7 @@ public class Shooter {
             new ShotSample(160, 1650+50, 0.0005*sv,0.55)
     );
 
-    public Shooter(HardwareMap hardwareMap, TelemetryManager telemetry,boolean a){
+    public Shooter(HardwareMap hardwareMap, TelemetryManager telemetry,boolean auto){
 
         SS=hardwareMap.get(DcMotorEx.class, "SS");
         SD=hardwareMap.get(DcMotorEx.class, "SD");
@@ -64,9 +64,9 @@ public class Shooter {
         latch=hardwareMap.get(Servo.class,"latch");
 
         SD.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        if(a){
+        if(auto){
             SVD.setPosition(0.1);
-            latch.setPosition(0.7);
+            latch.setPosition(0.75);
         }
         SD.setDirection(DcMotorSimple.Direction.REVERSE);
     }
