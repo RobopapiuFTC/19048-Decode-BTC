@@ -105,7 +105,7 @@ public class Robot {
             f.holdPoint(currentPose);
         }
         else{
-            i.start();
+            i.shoot();
             f.startTeleOpDrive();
         }
     }
@@ -198,7 +198,7 @@ public class Robot {
             }
         }
         if(g1.a){
-            i.start();
+            i.shoot();
         }
         slowmode = g1.right_trigger > 0.3;
         if(g1.options){

@@ -22,13 +22,16 @@ import org.firstinspires.ftc.teamcode.Hardware.Robot;
 import com.pedropathing.util.Timer;
 public class Intake {
     public DcMotorEx intake,transfer;
-    public boolean pornit=false,ip=false,tp=false,intaking=false;
+    public Servo flick;
+    public boolean pornit=false,ip=false,tp=false,intaking=false,done=true;
+    public double jos=0.5,sus=0.7;
     public Timer iTimer;
 
     public static double power=1;
     public static boolean triangle=true;
 
     public Intake(HardwareMap hw, TelemetryManager telemetry){
+        flick=hw.get(Servo.class, "f");
         intake=hw.get(DcMotorEx.class, "i");
         transfer=hw.get(DcMotorEx.class, "t");
         transfer.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -37,6 +40,7 @@ public class Intake {
     public void periodic(){
         //full();
         run();
+        flick();
     }
     public void start() {
         intaking=false;
@@ -46,6 +50,16 @@ public class Intake {
         ip = true;
         tp = true;
     }
+    public void shoot(){
+        intaking=false;
+        pornit=true;
+        intake.setPower(1);
+        transfer.setPower(power);
+        ip=true;
+        tp=true;
+        done=false;
+        iTimer.resetTimer();
+    }
     public void intake(){
         intaking=true;
         pornit=true;
@@ -54,7 +68,20 @@ public class Intake {
         else transfer.setPower(1);
         ip=true;
         tp=true;
-        iTimer.resetTimer();
+        done=true;
+        flick.setPosition(jos);
+    }
+    public void flick(){
+        if(!done){
+            if(iTimer.getElapsedTimeSeconds()>0.15 && iTimer.getElapsedTimeSeconds()<0.3){
+                flick.setPosition(sus);
+            }
+            if(iTimer.getElapsedTimeSeconds()>0.3){
+                transfer.setPower(0);
+                flick.setPosition(jos);
+                done=true;
+            }
+        }
     }
     public void startI(){
         pornit=true;
