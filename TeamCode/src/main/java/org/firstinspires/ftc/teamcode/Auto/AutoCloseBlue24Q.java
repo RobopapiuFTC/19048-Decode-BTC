@@ -196,17 +196,18 @@ public class AutoCloseBlue24Q extends OpMode{
                 }
                 if(!okf && latchTimer.getElapsedTimeSeconds()>latchT)r.s.latchdown();
                 if(!follower.isBusy()) {
-                    doorPickup = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierCurve(follower::getPose,
-                                            new Pose(40,60),
-                                            doorPose)
-                            )
-                            .setBrakingStrength(2)
-                            .setConstantHeadingInterpolation(doorPose.getHeading())
-                            .build();
                     if(okp){
+                        doorPickup = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierCurve(follower::getPose,
+                                                new Pose(40,60),
+                                                doorPose)
+                                )
+                                .setBrakingStrength(2)
+                                .setConstantHeadingInterpolation(doorPose.getHeading())
+                                .build();
+                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -223,16 +224,16 @@ public class AutoCloseBlue24Q extends OpMode{
                 break;
             case 6:
                 if(!follower.isBusy()) {
-                    scoreDoor = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierLine(follower::getPose,
-                                            scorePose)
-                            )
-                            .setBrakingStrength(2)
-                            .setTangentHeadingInterpolation().setReversed()
-                            .build();
                     if(okp){
+                        scoreDoor = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierLine(follower::getPose,
+                                                scorePose)
+                                )
+                                .setBrakingStrength(2)
+                                .setTangentHeadingInterpolation().setReversed()
+                                .build();
                         pathTimer.resetTimer();
                         okp=false;
 
@@ -255,17 +256,18 @@ public class AutoCloseBlue24Q extends OpMode{
                 }
                 if(!okf && latchTimer.getElapsedTimeSeconds()>latchT)r.s.latchdown();
                 if(!follower.isBusy()) {
-                    doorPickup = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierCurve(follower::getPose,
-                                            new Pose(40,60),
-                                            doorPose)
-                            )
-                            .setBrakingStrength(2)
-                            .setConstantHeadingInterpolation(doorPose.getHeading())
-                            .build();
                     if(okp){
+                        doorPickup = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierCurve(follower::getPose,
+                                                new Pose(40,60),
+                                                doorPose)
+                                )
+                                .setBrakingStrength(2)
+                                .setConstantHeadingInterpolation(doorPose.getHeading())
+                                .build();
+                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -282,16 +284,16 @@ public class AutoCloseBlue24Q extends OpMode{
                 break;
             case 8:
                 if(!follower.isBusy()) {
-                    scoreDoor = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierLine(follower::getPose,
-                                            scorePose)
-                            )
-                            .setBrakingStrength(2)
-                            .setTangentHeadingInterpolation().setReversed()
-                            .build();
                     if(okp){
+                        scoreDoor = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierLine(follower::getPose,
+                                                scorePose)
+                                )
+                                .setBrakingStrength(2)
+                                .setTangentHeadingInterpolation().setReversed()
+                                .build();
                         pathTimer.resetTimer();
                         okp=false;
 
@@ -314,17 +316,18 @@ public class AutoCloseBlue24Q extends OpMode{
                 }
                 if(!okf && latchTimer.getElapsedTimeSeconds()>latchT)r.s.latchdown();
                 if(!follower.isBusy()) {
-                    doorPickup = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierCurve(follower::getPose,
-                                            new Pose(40,60),
-                                            doorPose)
-                            )
-                            .setBrakingStrength(2)
-                            .setConstantHeadingInterpolation(doorPose.getHeading())
-                            .build();
                     if(okp){
+                        doorPickup = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierCurve(follower::getPose,
+                                                new Pose(40,60),
+                                                doorPose)
+                                )
+                                .setBrakingStrength(2)
+                                .setConstantHeadingInterpolation(doorPose.getHeading())
+                                .build();
+                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -341,16 +344,16 @@ public class AutoCloseBlue24Q extends OpMode{
                 break;
             case 10:
                 if(!follower.isBusy()) {
-                    scoreDoor = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierLine(follower::getPose,
-                                            scorePose)
-                            )
-                            .setBrakingStrength(2)
-                            .setTangentHeadingInterpolation().setReversed()
-                            .build();
                     if(okp){
+                        scoreDoor = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierLine(follower::getPose,
+                                                scorePose)
+                                )
+                                .setBrakingStrength(2)
+                                .setTangentHeadingInterpolation().setReversed()
+                                .build();
                         pathTimer.resetTimer();
                         okp=false;
 
@@ -373,17 +376,18 @@ public class AutoCloseBlue24Q extends OpMode{
                 }
                 if(!okf && latchTimer.getElapsedTimeSeconds()>latchT)r.s.latchdown();
                 if(!follower.isBusy()) {
-                    doorPickup = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierCurve(follower::getPose,
-                                            new Pose(40,60),
-                                            doorPose)
-                            )
-                            .setBrakingStrength(2)
-                            .setConstantHeadingInterpolation(doorPose.getHeading())
-                            .build();
                     if(okp){
+                        doorPickup = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierCurve(follower::getPose,
+                                                new Pose(40,60),
+                                                doorPose)
+                                )
+                                .setBrakingStrength(2)
+                                .setConstantHeadingInterpolation(doorPose.getHeading())
+                                .build();
+                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -400,16 +404,16 @@ public class AutoCloseBlue24Q extends OpMode{
                 break;
             case 12:
                 if(!follower.isBusy()) {
-                    scoreDoor = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierLine(follower::getPose,
-                                            scorePose)
-                            )
-                            .setBrakingStrength(2)
-                            .setTangentHeadingInterpolation().setReversed()
-                            .build();
                     if(okp){
+                        scoreDoor = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierLine(follower::getPose,
+                                                scorePose)
+                                )
+                                .setBrakingStrength(2)
+                                .setTangentHeadingInterpolation().setReversed()
+                                .build();
                         pathTimer.resetTimer();
                         okp=false;
 
@@ -432,17 +436,19 @@ public class AutoCloseBlue24Q extends OpMode{
                 }
                 if(!okf && latchTimer.getElapsedTimeSeconds()>latchT)r.s.latchdown();
                 if(!follower.isBusy()) {
-                    doorPickup = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierCurve(follower::getPose,
-                                            new Pose(40,60),
-                                            doorPose)
-                            )
-                            .setBrakingStrength(2)
-                            .setConstantHeadingInterpolation(doorPose.getHeading())
-                            .build();
+
                     if(okp){
+                        doorPickup = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierCurve(follower::getPose,
+                                                new Pose(40,60),
+                                                doorPose)
+                                )
+                                .setBrakingStrength(2)
+                                .setConstantHeadingInterpolation(doorPose.getHeading())
+                                .build();
+                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -459,16 +465,16 @@ public class AutoCloseBlue24Q extends OpMode{
                 break;
             case 14:
                 if(!follower.isBusy()) {
-                    scoreDoor = follower
-                            .pathBuilder()
-                            .addPath(
-                                    new BezierLine(follower::getPose,
-                                            endPose)
-                            )
-                            .setBrakingStrength(2)
-                            .setTangentHeadingInterpolation().setReversed()
-                            .build();
                     if(okp){
+                        scoreDoor = follower
+                                .pathBuilder()
+                                .addPath(
+                                        new BezierLine(follower::getPose,
+                                                endPose)
+                                )
+                                .setBrakingStrength(2)
+                                .setTangentHeadingInterpolation().setReversed()
+                                .build();
                         pathTimer.resetTimer();
                         okp=false;
 
