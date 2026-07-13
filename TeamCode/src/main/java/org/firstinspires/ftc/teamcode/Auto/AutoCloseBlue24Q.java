@@ -29,7 +29,7 @@ public class AutoCloseBlue24Q extends OpMode{
     private int pathState;
     private  Pose startPose = new Pose(23, 128, Math.toRadians(234));
     private  Pose scorePose = new Pose(57, 90, Math.toRadians(210));
-    private  Pose doorPose = new Pose(17,61,Math.toRadians(150));
+    private  Pose doorPose = new Pose(18,59.5,Math.toRadians(150));
     private  Pose line1Pose = new Pose(21, 84, Math.toRadians(180));
     private  Pose line2Pose = new Pose(21, 60, Math.toRadians(180));
     private  Pose line3Pose = new Pose(17, 35, Math.toRadians(180));
@@ -40,11 +40,11 @@ public class AutoCloseBlue24Q extends OpMode{
         score = HeadingInterpolator.piecewise(
                 new HeadingInterpolator.PiecewiseNode(
                         0,
-                        0.8,
+                        0.5,
                         HeadingInterpolator.tangent
                 ),
                 new HeadingInterpolator.PiecewiseNode(
-                        0.8,
+                        0.5,
                         1,
                         HeadingInterpolator.constant(Math.toRadians(180))
                 )
@@ -75,11 +75,11 @@ public class AutoCloseBlue24Q extends OpMode{
         grabPickup1 = follower
                 .pathBuilder()
                 .addPath(
-                        new BezierCurve(follower::getPose,
+                        new BezierLine(follower::getPose,
                                 line1Pose)
                 )
                 .setBrakingStrength(2)
-                .setConstantHeadingInterpolation(180)
+                .setConstantHeadingInterpolation(Math.toRadians(180))
                 .build();
         scorePickup1 = follower
                 .pathBuilder()
@@ -134,7 +134,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(grabPickup1, true);
                         intake();
                         oktrue();
@@ -167,7 +167,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(grabPickup2,true);
                         intake();
                         oktrue();
@@ -213,7 +213,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(doorPickup, true);
                         intake();
                         oktrue();
@@ -273,7 +273,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(doorPickup, true);
                         intake();
                         oktrue();
@@ -333,7 +333,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(doorPickup, true);
                         intake();
                         oktrue();
@@ -393,7 +393,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(doorPickup, true);
                         intake();
                         oktrue();
@@ -454,7 +454,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(doorPickup, true);
                         intake();
                         oktrue();
@@ -503,7 +503,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         r.i.shoot();
                         okp=false;
                     }
-                    if(r.i.done && pathTimer.getElapsedTimeSeconds()>0.1) {
+                    if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         oktrue();
                         endPath();
                     }

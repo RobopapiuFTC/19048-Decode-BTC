@@ -24,7 +24,7 @@ public class Intake {
     public DcMotorEx intake,transfer;
     public Servo flick;
     public boolean pornit=false,ip=false,tp=false,intaking=false,done=true;
-    public double jos=0.5,sus=0.7;
+    public double jos=0.5,sus=0.9;
     public Timer iTimer;
 
     public static double power=1;
@@ -72,14 +72,32 @@ public class Intake {
         flick.setPosition(jos);
     }
     public void flick(){
-        if(!done){
-            if(iTimer.getElapsedTimeSeconds()>0.15 && iTimer.getElapsedTimeSeconds()<0.3){
-                flick.setPosition(sus);
+        if(!triangle) {
+            if (!done) {
+                if (iTimer.getElapsedTimeSeconds() > 0.25 && iTimer.getElapsedTimeSeconds() < 0.4) {
+                    flick.setPosition(sus);
+                }
+                if (iTimer.getElapsedTimeSeconds() > 0.4) {
+                    transfer.setPower(0);
+                    done = true;
+                }
             }
-            if(iTimer.getElapsedTimeSeconds()>0.3){
-                transfer.setPower(0);
+            if (done && iTimer.getElapsedTimeSeconds() > 0.5) {
                 flick.setPosition(jos);
-                done=true;
+            }
+        }
+        else{
+            if (!done) {
+                if (iTimer.getElapsedTimeSeconds() > 0.35 && iTimer.getElapsedTimeSeconds() < 0.45) {
+                    flick.setPosition(sus);
+                }
+                if (iTimer.getElapsedTimeSeconds() > 0.5) {
+                    transfer.setPower(0);
+                    done = true;
+                }
+            }
+            if (done && iTimer.getElapsedTimeSeconds() > 0.65) {
+                flick.setPosition(jos);
             }
         }
     }
