@@ -40,11 +40,11 @@ public class AutoCloseBlue24Q extends OpMode{
         score = HeadingInterpolator.piecewise(
                 new HeadingInterpolator.PiecewiseNode(
                         0,
-                        0.5,
+                        0.3,
                         HeadingInterpolator.tangent
                 ),
                 new HeadingInterpolator.PiecewiseNode(
-                        0.5,
+                        0.3,
                         1,
                         HeadingInterpolator.constant(Math.toRadians(180))
                 )

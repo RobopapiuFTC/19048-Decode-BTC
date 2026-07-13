@@ -26,9 +26,11 @@ public class Shooter {
     public DcMotorEx SS,SD;
     public Servo SVD,latch;
     private double t = 0;
-    public static double kS = 0.08, kV = 0.00039, kP = 0.01;
+    //public static double kS = 0.08, kV = 0.00039, kP = 0.01;
+    public static double kS = 0.07, kV = 0.0003975, kP = 0.01, useRaw = 80;
     public boolean activated = true;
     public static double sv = 355/270;
+    private double velocity;
 
     public double offset,latching=0.75;
     public static double hood,angle=0.0005*sv,anglemax=0.05;
@@ -71,8 +73,18 @@ public class Shooter {
         SD.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void periodic(){
-        if (activated)
+      /*  if (activated)
             setPower((kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS);
+
+       */
+        if (activated) {
+            velocity = SD.getVelocity();
+
+            if (Math.abs(getTarget() - getVelocity()) > useRaw)
+                setPower(Math.signum(getTarget() - getVelocity()));
+            else
+                setPower(Math.max(0,(kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS));
+        }
 
         hood();
     }
@@ -85,7 +97,7 @@ public class Shooter {
     }
 
     public double getVelocity() {
-        return SD.getVelocity();
+        return velocity;
     }
     public void setPower(double p) {
         SS.setPower(p);
