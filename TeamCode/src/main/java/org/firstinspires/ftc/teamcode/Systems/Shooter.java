@@ -29,6 +29,7 @@ public class Shooter {
     public static double kS = 0.08, kV = 0.00039, kP = 0.01;
     public boolean activated = true;
     public static double sv = 355/270;
+    public static double f=0.005;
 
     public double offset,latching=0.75;
     public static double hood,angle=0.0005*sv,anglemax=0.05;
@@ -94,9 +95,20 @@ public class Shooter {
     }
     public void periodic(){
         if (activated)
-            setPower((kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS);
-
+            setPower(BangBang(getVelocity(),getTarget()));
+        //  setPower((kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS);
         hood();
+    }
+    public double BangBang (double cur, double target) {
+        if (cur < target) {
+            return 1.0;
+        } else if (cur < target*1.025) {//.89 is jank fix because voltage compensation
+            return f*target;
+        }
+        else if(cur>target*1.05){
+            return ((kV * target) + (kP * (target - cur)) + kS);
+        }
+        else return 0;
     }
     public void hood(){
         hood=clamp(anglemax-(getTarget()-getVelocity()-20)*angle,0.1,anglemax);
