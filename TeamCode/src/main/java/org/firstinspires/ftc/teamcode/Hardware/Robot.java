@@ -287,7 +287,7 @@ public class Robot {
         else setShootTargetFar();
     }
     public void setShootTarget() {
-        if (a){shootp = new Pose(0, 144, 0);}
+        if (a){shootp = new Pose(2, 142, 0);}
         else {shootp = new Pose(144, 144, 0);}
         i.power=1;
     }

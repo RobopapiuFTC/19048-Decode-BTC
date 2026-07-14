@@ -29,7 +29,7 @@ public class AutoCloseBlue24Q extends OpMode{
     private int pathState;
     private  Pose startPose = new Pose(23, 128, Math.toRadians(234));
     private  Pose scorePose = new Pose(57, 90, Math.toRadians(210));
-    private  Pose doorPose = new Pose(18,59.5,Math.toRadians(150));
+    private  Pose doorPose = new Pose(17,59.5,Math.toRadians(155));
     private  Pose line1Pose = new Pose(21, 84, Math.toRadians(180));
     private  Pose line2Pose = new Pose(21, 60, Math.toRadians(180));
     private  Pose line3Pose = new Pose(17, 35, Math.toRadians(180));
@@ -100,7 +100,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         )
                 )
                 .setBrakingStrength(2)
-                .setHeadingInterpolation(score)
+                .setConstantHeadingInterpolation(Math.toRadians(180))
                 .build();
         scorePickup2 = follower
                 .pathBuilder()
@@ -207,7 +207,7 @@ public class AutoCloseBlue24Q extends OpMode{
                                 .setBrakingStrength(2)
                                 .setConstantHeadingInterpolation(doorPose.getHeading())
                                 .build();
-                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
+                        doorPose=new Pose(doorPose.getX()-0.3, doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -267,7 +267,7 @@ public class AutoCloseBlue24Q extends OpMode{
                                 .setBrakingStrength(2)
                                 .setConstantHeadingInterpolation(doorPose.getHeading())
                                 .build();
-                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
+                        doorPose=new Pose(doorPose.getX()-0.3, doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -327,7 +327,7 @@ public class AutoCloseBlue24Q extends OpMode{
                                 .setBrakingStrength(2)
                                 .setConstantHeadingInterpolation(doorPose.getHeading())
                                 .build();
-                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
+                        doorPose=new Pose(doorPose.getX()-0.3, doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -387,7 +387,7 @@ public class AutoCloseBlue24Q extends OpMode{
                                 .setBrakingStrength(2)
                                 .setConstantHeadingInterpolation(doorPose.getHeading())
                                 .build();
-                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
+                        doorPose=new Pose(doorPose.getX()-0.3, doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -448,7 +448,7 @@ public class AutoCloseBlue24Q extends OpMode{
                                 .setBrakingStrength(2)
                                 .setConstantHeadingInterpolation(doorPose.getHeading())
                                 .build();
-                        doorPose=new Pose(doorPose.getX(), doorPose.getY()+0.5,doorPose.getHeading());
+                        doorPose=new Pose(doorPose.getX()-0.3, doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();

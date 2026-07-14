@@ -26,16 +26,14 @@ public class Shooter {
     public DcMotorEx SS,SD;
     public Servo SVD,latch;
     private double t = 0;
-    //public static double kS = 0.08, kV = 0.00039, kP = 0.01;
-    public static double kS = 0.07, kV = 0.0003975, kP = 0.01, useRaw = 80;
+    public static double kS = 0.08, kV = 0.00039, kP = 0.01;
     public boolean activated = true;
     public static double sv = 355/270;
-    private double velocity;
 
     public double offset,latching=0.75;
     public static double hood,angle=0.0005*sv,anglemax=0.05;
 
-    public static List<ShotSample> samples = Arrays.asList(
+    /* public static List<ShotSample> samples = Arrays.asList(
             new ShotSample(50, 1230, 0.0005*sv,0.44),
             new ShotSample(55, 1240, 0.0005*sv,0.44),
             new ShotSample(60, 1250, 0.0005*sv,0.5),
@@ -43,6 +41,28 @@ public class Shooter {
             new ShotSample(70, 1270+20, 0.0005*sv,0.7),
             new ShotSample(75, 1280+20, 0.0005*sv,0.7),
             new ShotSample(80, 1290+20, 0.0005*sv,0.7),
+            new ShotSample(85, 1310+20, 0.0005*sv,0.7),
+            new ShotSample(90, 1330+20, 0.0005*sv,0.7),
+            new ShotSample(95, 1350+20, 0.0005*sv,0.7),
+            new ShotSample(100, 1370+20, 0.0005*sv,0.7),
+            new ShotSample(105, 1390+20, 0.0005*sv,0.7),
+            new ShotSample(110, 1410+20, 0.0005*sv,0.7),
+            new ShotSample(115, 1450+20, 0.0005*sv,0.7),
+            new ShotSample(120, 1490+20, 0.0005*sv,0.7),
+            new ShotSample(125, 1510+20, 0.0005*sv,0.55),
+            new ShotSample(130, 1530+20, 0.0005*sv,0.55),
+            new ShotSample(140, 1570+20, 0.0005*sv,0.55),
+            new ShotSample(150, 1630+20, 0.0005*sv,0.55),
+            new ShotSample(160, 1650+50, 0.0005*sv,0.55)
+    ); */
+    public static List<ShotSample> samples = Arrays.asList(
+            new ShotSample(50, 1160, 0.0005*sv,0.44),
+            new ShotSample(55, 1180, 0.0005*sv,0.44),
+            new ShotSample(60, 1220, 0.0005*sv,0.5),
+            new ShotSample(65, 1240, 0.0005*sv,0.7),
+            new ShotSample(70, 1260, 0.0005*sv,0.7),
+            new ShotSample(75, 1280, 0.0005*sv,0.7),
+            new ShotSample(80, 1310, 0.0005*sv,0.7),
             new ShotSample(85, 1310+20, 0.0005*sv,0.7),
             new ShotSample(90, 1330+20, 0.0005*sv,0.7),
             new ShotSample(95, 1350+20, 0.0005*sv,0.7),
@@ -73,18 +93,8 @@ public class Shooter {
         SD.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void periodic(){
-      /*  if (activated)
+        if (activated)
             setPower((kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS);
-
-       */
-        if (activated) {
-            velocity = SD.getVelocity();
-
-            if (Math.abs(getTarget() - getVelocity()) > useRaw)
-                setPower(Math.signum(getTarget() - getVelocity()));
-            else
-                setPower(Math.max(0,(kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS));
-        }
 
         hood();
     }
@@ -97,7 +107,7 @@ public class Shooter {
     }
 
     public double getVelocity() {
-        return velocity;
+        return SD.getVelocity();
     }
     public void setPower(double p) {
         SS.setPower(p);

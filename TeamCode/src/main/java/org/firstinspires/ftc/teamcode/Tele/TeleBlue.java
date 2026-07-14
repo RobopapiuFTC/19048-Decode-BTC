@@ -61,6 +61,7 @@ public class TeleBlue extends OpMode {
         t.addData("Turret Ticks", r.tu.t);
         t.addData("Turret Position", r.tu.target);
         t.addData("Turret Angle",r.tu.target*355);
+        t.addData("Distance",r.dist);
         t.addData("Velocity: ", r.s.getVelocity());
         t.addData("Transfer Amps: ", r.i.getAT());
         t.addData("Shooter offset: ", r.s.offset);
