@@ -441,14 +441,12 @@ public class AutoCloseBlue24Q extends OpMode{
                         doorPickup = follower
                                 .pathBuilder()
                                 .addPath(
-                                        new BezierCurve(follower::getPose,
-                                                new Pose(40,60),
-                                                doorPose)
+                                        new BezierLine(follower::getPose,
+                                                line1Pose)
                                 )
                                 .setBrakingStrength(2)
-                                .setConstantHeadingInterpolation(doorPose.getHeading())
+                                .setConstantHeadingInterpolation(line1Pose.getHeading())
                                 .build();
-                        doorPose=new Pose(doorPose.getX()-0.3, doorPose.getY()+0.5,doorPose.getHeading());
                         r.aiming=true;
                         pathTimer.resetTimer();
                         r.i.shoot();
@@ -456,14 +454,14 @@ public class AutoCloseBlue24Q extends OpMode{
                     }
                     if(pathTimer.getElapsedTimeSeconds()>0.5) {
                         follower.followPath(doorPickup, true);
-                        intake();
-                        oktrue();
                         r.aiming=false;
-                        nextPath();
+                        r.i.stop();
+                        oktrue();
+                        endPath();
                     }
                 }
                 break;
-            case 14:
+            /* case 14:
                 if(!follower.isBusy()) {
                     if(okp){
                         scoreDoor = follower
@@ -508,7 +506,7 @@ public class AutoCloseBlue24Q extends OpMode{
                         endPath();
                     }
                 }
-                break;
+                break;*/
         }
     }
     public void oktrue(){
