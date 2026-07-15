@@ -103,7 +103,7 @@ public class Shooter {
         if (cur < target) {
             return 1.0;
         } else if (cur < target*1.025) {//.89 is jank fix because voltage compensation
-            return f*target;
+            return f*(target*1.025-cur);
         }
         else if(cur>target*1.05){
             return ((kV * target) + (kP * (target - cur)) + kS);
