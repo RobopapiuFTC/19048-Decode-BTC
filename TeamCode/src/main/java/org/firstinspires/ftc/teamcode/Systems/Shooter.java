@@ -87,6 +87,8 @@ public class Shooter {
         latch=hardwareMap.get(Servo.class,"latch");
 
         SD.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        SD.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        SS.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         if(auto){
             SVD.setPosition(0.1);
             latch.setPosition(0.75);
