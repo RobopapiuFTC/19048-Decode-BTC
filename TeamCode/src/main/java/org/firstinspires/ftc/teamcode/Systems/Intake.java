@@ -28,7 +28,7 @@ public class Intake {
     public Timer iTimer;
 
     public static double power=1;
-    public static boolean triangle=true;
+    public static boolean triangle=false;
 
     public Intake(HardwareMap hw, TelemetryManager telemetry){
         flick=hw.get(Servo.class, "f");

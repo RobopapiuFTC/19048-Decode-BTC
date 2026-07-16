@@ -58,7 +58,6 @@ public class Robot {
         s=new Shooter(this.h,this.t,this.auto);
         i=new Intake(this.h,this.t);
         tu=new Turret(this.h,this.t,this.auto);
-        i.triangle=true;
         loopTimer=new Timer();
         iTimer=new Timer();
         sTimer=new Timer();
@@ -287,7 +286,7 @@ public class Robot {
         else setShootTargetFar();
     }
     public void setShootTarget() {
-        if (a){shootp = new Pose(2, 142, 0);}
+        if (a){shootp = new Pose(0, 144, 0);}
         else {shootp = new Pose(144, 144, 0);}
         i.power=1;
     }
