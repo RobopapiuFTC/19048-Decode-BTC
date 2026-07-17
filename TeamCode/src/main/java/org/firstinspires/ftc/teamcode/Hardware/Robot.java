@@ -282,8 +282,19 @@ public class Robot {
         else tu.offset=offsetFar;
     }
     public void shootTarget(){
-        if(currentPose.getY()>40){setShootTarget();}
-        else setShootTargetFar();
+        if(!auto) {
+            if (currentPose.getY() > 40) {
+                setShootTarget();
+            } else setShootTargetFar();
+        }
+        else{
+            setAutoTarget();
+        }
+    }
+    public void setAutoTarget(){
+        if (a){shootp = new Pose(2, 142, 0);}
+        else {shootp = new Pose(142, 142, 0);}
+        i.power=1;
     }
     public void setShootTarget() {
         if (a){shootp = new Pose(0, 144, 0);}
