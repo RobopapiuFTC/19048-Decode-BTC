@@ -97,8 +97,8 @@ public class Shooter {
     }
     public void periodic(){
         if (activated)
-            setPower(BangBang(getVelocity(),getTarget()));
-        //  setPower((kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS);
+         //   setPower(BangBang(getVelocity(),getTarget()));
+          setPower((kV * getTarget()) + (kP * (getTarget() - getVelocity())) + kS);
         hood();
     }
     public double BangBang (double cur, double target) {
